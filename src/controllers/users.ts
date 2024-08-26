@@ -52,7 +52,7 @@ export const listAddress = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   console.log("loggggg");
-  
+
   const validateUserData = UpdateUserSchema.parse(req.body)
   let shippingAddress: Address;
   let billingAddress: Address;
@@ -64,12 +64,11 @@ export const updateUser = async (req: Request, res: Response) => {
           id: validateUserData.defaultShippingAddress
         }
       })
-
-      if (shippingAddress.userId != req.user.id) {
-        throw new BadRequestException("Address Not Belong user.", ErrorCode.ADDRESS_NOT_BELONG_USER);
-      }
     } catch (error) {
       throw new NotFoundException("Address Not Found.", ErrorCode.ADDRESS_NOT_FOUND);
+    }
+    if (shippingAddress.userId != req.user.id) {
+      throw new BadRequestException("Address Not Belong user.", ErrorCode.ADDRESS_NOT_BELONG_USER);
     }
   }
 
@@ -81,11 +80,12 @@ export const updateUser = async (req: Request, res: Response) => {
         }
       })
 
-      if (billingAddress.userId != req.user.id) {
-        throw new BadRequestException("Address Not Belong user.", ErrorCode.ADDRESS_NOT_BELONG_USER);
-      }
+
     } catch (error) {
       throw new NotFoundException("Address Not Found.", ErrorCode.ADDRESS_NOT_FOUND);
+    }
+    if (billingAddress.userId != req.user.id) {
+      throw new BadRequestException("Address Not Belong user.", ErrorCode.ADDRESS_NOT_BELONG_USER);
     }
   }
 
