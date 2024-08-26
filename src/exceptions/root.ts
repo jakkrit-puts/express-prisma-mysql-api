@@ -7,7 +7,7 @@ export class HttpException extends Error {
   errors: ErrorCode
 
   constructor(
-    message: string, 
+    message: string,
     errorCode: any,
     statusCode: number,
     errors: ErrorCode
@@ -27,5 +27,17 @@ export enum ErrorCode {
   UNPROCESSABLE_ENTITY = 20001,
   INTERNAL_EXCEPTION = 3001,
   UNAUTHORIZED = 40001,
+  ADDRESS_NOT_FOUND = 40002,
   PRODUCT_NOT_FOUND = 50001
+}
+
+export enum ErrorMessage {
+  // refactor
+  USER_NOT_FOUND = "",
+  USER_ALREADY_EXISTS = "",
+  INCORRECT_PASSWORD = "",
+  UNPROCESSABLE_ENTITY = "",
+  INTERNAL_EXCEPTION = "",
+  UNAUTHORIZED = "",
+  PRODUCT_NOT_FOUND = ""
 }
